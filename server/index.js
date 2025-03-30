@@ -9,7 +9,7 @@ if (!token) {
     process.exit(1);
 }
 
-const webAppUrl = "/";
+const webAppUrl = "https://verdant-jalebi-a3725c.netlify.app/";
 
 const bot = new TelegramApi(token, { polling: true });
 
@@ -77,6 +77,20 @@ const start = () => {
                 }
             });
         }
+
+
+        if (text === 'Замер форма') {
+            await bot.sendMessage(chatId, "Заполни форму", {
+                reply_markup: {
+                    keyboard: [
+                        [{ text: 'Заполнить форму', web_app: { url: webAppUrl } }]
+
+                    ]
+
+                }
+            });
+        }
+
 
         if (text === 'Адреса офисов') {
             await bot.sendMessage(chatId, "Выберите интересующий Вас офис", {
