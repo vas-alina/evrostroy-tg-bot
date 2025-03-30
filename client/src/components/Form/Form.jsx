@@ -9,24 +9,27 @@ const Form = () => {
   const [area, setArea] = useState("");
   const [phone, setPhone] = useState("+7");
   const tg = useTelegram();
-  console.log("Форма отрендерена");
 
   useEffect(() => {
     if (tg?.MainButton) {
       tg.MainButton.setParams({ text: "Отправить заявку" });
+      console.log("MainButton set");
     }
   }, [tg]);
 
   useEffect(() => {
     if (tg?.MainButton) {
+      console.log("City:", city, "Area:", area, "Phone:", phone);
+
       if (!city || !phone || !area) {
         tg.MainButton.hide();
+        console.log("Button hidden");
       } else {
         tg.MainButton.show();
+        console.log("Button shown");
       }
     }
-  }, [city, area, phone]);
-
+  }, [city, area, phone, tg]);
   return (
     <div className="form">
       <h3 className="form-title">Введите данные для заявки</h3>
