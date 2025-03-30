@@ -1,0 +1,45 @@
+.form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .form-data {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .select, input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .select {
+    cursor: pointer;
+  }
+  
+  input:focus, .select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .phone-input {
+    width: 100%;
+  }
