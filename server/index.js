@@ -9,7 +9,7 @@ if (!token) {
     process.exit(1);
 }
 
-const webAppUrl = "https://verdant-jalebi-a3725c.netlify.app/";
+const webAppUrl = "https://verdant-jalebi-a3725c.netlify.app";
 
 const bot = new TelegramApi(token, { polling: true });
 
