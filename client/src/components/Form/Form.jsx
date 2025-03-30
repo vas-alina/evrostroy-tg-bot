@@ -10,33 +10,28 @@ const Form = () => {
   const [phone, setPhone] = useState("+7");
   const tg = useTelegram();
 
-  useEffect(() => {
-    if (tg?.MainButton) {
-      tg.MainButton.setParams({ text: "Отправить заявку" });
-      tg.MainButton.show(); // Отображаем кнопку "Отправить заявку" сразу
-    }
-  }, [tg]);
 
-  //   useEffect(() => {
-  //     if (tg?.MainButton) {
-  //       tg.MainButton.setParams({ text: "Отправить заявку" });
-  //       console.log("MainButton set");
-  //     }
-  //   }, [tg]);
+    useEffect(() => {
+      if (tg?.MainButton) {
+        tg.MainButton.setParams({ text: "Отправить заявку" });
+        console.log("MainButton set");
+      }
+    }, [tg]);
 
-  //   useEffect(() => {
-  //     if (tg?.MainButton) {
-  //       console.log("City:", city, "Area:", area, "Phone:", phone);
+    useEffect(() => {
+        if (tg?.MainButton) {
+          console.log("City:", city, "Area:", area, "Phone:", phone);
 
-  //       if (!city || !phone || !area) {
-  //         tg.MainButton.hide();
-  //         console.log("Кнопка скрыта");
-  //       } else {
-  //         tg.MainButton.show();
-  //         console.log("Button shown");
-  //       }
-  //     }
-  //   }, [city, area, phone, tg]);
+          if (!phone || !city || !area) {
+            tg.MainButton.hide();
+            console.log("Кнопка скрыта");
+          } else {
+            tg.MainButton.show();
+            console.log("Button shown");
+          }
+        }
+      }, [phone, city, area, tg]);
+
   return (
     <div className="form">
       <h3 className="form-title">Введите данные для заявки</h3>
