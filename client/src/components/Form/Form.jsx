@@ -8,29 +8,61 @@ const Form = () => {
   const [city, setCity] = useState("");
   const [area, setArea] = useState("");
   const [phone, setPhone] = useState("+7");
+  const [isReady, setIsReady] = useState(false);
   const tg = useTelegram();
 
+  useEffect(() => {
+    if (tg?.ready) {
+      tg.ready(); 
+      setIsReady(true); 
+    }
+  }, [tg]);
 
-    useEffect(() => {
-      if (tg?.MainButton) {
-        tg.MainButton.setParams({ text: "Отправить заявку" });
-        console.log("MainButton set");
+  useEffect(() => {
+    if (isReady && tg?.MainButton) {
+      tg.MainButton.setParams({ text: "Отправить заявку" });
+      console.log("MainButton set");
+    } else {
+      console.log("tg.MainButton не доступна");
+    }
+  }, [tg, isReady]);
+
+  useEffect(() => {
+    if (isReady && tg?.MainButton) {
+      console.log("City:", city, "Area:", area, "Phone:", phone);
+
+      if (!phone || !city || !area) {
+        tg.MainButton.hide();
+        console.log("Кнопка скрыта");
+      } else {
+        tg.MainButton.show();
+        console.log("Button shown");
       }
-    }, [tg]);
+    } else {
+      console.log("tg.MainButton не доступна при попытке показать/скрыть");
+    }
+  }, [phone, city, area, tg, isReady]);
 
-    useEffect(() => {
-        if (tg?.MainButton) {
-          console.log("City:", city, "Area:", area, "Phone:", phone);
+    // useEffect(() => {
+    //   if (tg?.MainButton) {
+    //     tg.MainButton.setParams({ text: "Отправить заявку" });
+    //     console.log("MainButton set");
+    //   }
+    // }, [tg]);
 
-          if (!phone || !city || !area) {
-            tg.MainButton.hide();
-            console.log("Кнопка скрыта");
-          } else {
-            tg.MainButton.show();
-            console.log("Button shown");
-          }
-        }
-      }, [phone, city, area, tg]);
+    // useEffect(() => {
+    //     if (tg?.MainButton) {
+    //       console.log("City:", city, "Area:", area, "Phone:", phone);
+
+    //       if (!phone || !city || !area) {
+    //         tg.MainButton.hide();
+    //         console.log("Кнопка скрыта");
+    //       } else {
+    //         tg.MainButton.show();
+    //         console.log("Button shown");
+    //       }
+    //     }
+    //   }, [phone, city, area, tg]);
 
   return (
     <div className="form">
