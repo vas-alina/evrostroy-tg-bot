@@ -9,7 +9,7 @@ const Form = () => {
   const [area, setArea] = useState("");
   const [phone, setPhone] = useState("+7");
   const tg = useTelegram();
-  console.log(tg);
+  console.log("Форма отрендерена");
 
   useEffect(() => {
     if (tg?.MainButton) {
