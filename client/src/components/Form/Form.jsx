@@ -23,7 +23,7 @@ const Form = () => {
 
       if (!city || !phone || !area) {
         tg.MainButton.hide();
-        console.log("Button hidden");
+        console.log("Кнопка скрыта");
       } else {
         tg.MainButton.show();
         console.log("Button shown");
